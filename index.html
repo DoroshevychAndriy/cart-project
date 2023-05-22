@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="d-none">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 top-bar d-flex align-items-center justify-content-end pr-5 ">
+                    <div class="wishlist">
+                        <img width="50" height="50" src="https://img.icons8.com/ios/50/wish-list.png" alt="wish-list"/>
+                        <span id="wishlistCount">0</span>
+                    </div>
+                    <div class="cart">
+                        <img src="https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-svg-png-icon-download-28.png" alt="">
+                        <span id="productsCount"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-content container d-none">
+        <div class="d-none content mt-3">
+            <button class="btn btn-primary" id="addNewProduct">Додати в корзину</button>
+        </div>
+        <div class="carts d-flex">
+            <div class="cart__item" data-cartItem="10382">
+                <div class="item-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR0Vn00mzhrhavk0O2Psm8vEC3nzL-6hhLcbnwKsFsfyORBE6l2zxp0smclYA_CJhwqB2ctD5_HZfygwSx_RHQux_Rl90UNGzme9Mcvw6Ig7OwgMIlRRZId00hgx8gEha93wg&usqp=CAc" alt="">
+                </div>
+                <div class="item__content">
+                    <div class="item-title">
+                        Tričko Nike pánské T-Shirt Dry Park VII BV6708 010
+                    </div>
+                    <div class="item-price">
+                        <span>310</span>
+                        <span>Kč</span>
+                    </div>
+                    <div class="item__action">
+                        <div class="item-btn">
+                            <button class="btn btn-primary" id="addNewProduct">Додати в корзину</button>
+                        </div>
+                        <div class="item-save">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEBklEQVR4nO2Zb0hrdRjHv5W6pYVdnQgqKLZI7QpqiSJCDeuNEEFmGagokoIIJRfSkCQWgUTQO91AUTAKfBP5wlduNqeONpe9Cby7475QZA7tpnV0bF7PE884uxy8/jnOqefEPnBgnP3Oc/bZ7//zA5IkSZLk/8gzAN4A8DWABQDrAAQAYQDbABwAvgXwllT2Ip4FYALwHQAngKAUS5Bi8zvMAF5XGE+RwEcAfKWlpTQ4OEg2m43W19dJEAQKh8MUCATIbreT2WymiooKAvAAQBeAlFPi8b1PAPgrKyujz/CzHINjCYIQjT0/P08DAwNUUlLC8e4D+PAqQkYA7pqaGlpYWCClLC8vk8lk4h/gBfCaLN5dAGsNDQ20srKiOJ7dbqfq6mqO9xuAly8r8XZaWtpfFouFRFGkeJiYmKD09PR/AbwL4L2MjAxhcnIyrliiKNLo6CjxbwLQoFTiHYPBcOR0OumquN1uMhgMkZycnKPV1dUrx3M4HJSdnR1RIvOqTqd7lAiJGB6PJ3olCofDEauZV84bSbzj4+OkdqxWK/cZz1kDQGttbW3cfeKmqaurY5mPT6uNh0tLS6QVFhcXWcR/slZqysvLSWuUlZWxTLVcZGR4eJi0xtDQEIt8IxdxXGbSUws2m41FfpWL+P1+P2kNn8/HIj65yMHBwQFpDUEQSFpoPiEUCoVIaxweHrLIoVwkGAwGSWsEAgGSthFP+MPr9ZLW8Hg8LPK7XOTH6elp0hpTU1Ms8oNc5F5vby9pjZ6eHhb5TC5yt7i4mLRGYWEhi5ScXG/dd7lcpBWcTidL/HlSItq82tvbSSu0traySP9pIndSU1P/1sIM7/P5KCUl5RGAl3AGX7a0tJDaaWpq4tr4AueQzuuu2dlZUitzc3OxFJEeF2DKzc19vLm5SWpja2uL8vLyHgN4Ewr5vKqqKrqWUQuhUCiW37qHS8Dbx5/a2tpILXR2dj41iyuF+4ubZ/zbTEiIokj9/f2xTOPziBMe3lzd3d10fHx8KxJ9fX0ssQIgE1ckA4Cto6ODIpHIjUmEw2HiCRrAIoAXkSC4mf1SX19P29vb1y6xs7MTS4T/LL07oXDuy1xQUCByTve6WFtbo6KiIhHAV4k6GzmLJr1e/8/IyEhC+w33B6vVGsvgv48boohTSHzWsbGxkZAta2NjIzcl13nJ6euCm9qnmZmZYf4n42VmZoaysrKOpKb0HG6RKt4XNDc30+7urmKBvb094glX2lNUQiXoAXyfn58v8qLuIrgMl+VnlCz+bgM+qX3Y1dVF+/v7TwnwPf6Oy0gnwKrmBQAW3k/Lt86cbjIajSxhkcpohg90Ot3e2NgY8cWfeeiGRjHykbR0XfpoOQk0zH9T/QhtUPNkqQAAAABJRU5ErkJggg==">
+                        </div>
+                        <div class="item-save__wishlist d-none">
+                            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/filled-like.png" alt="filled-like"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cart__item" data-cartItem="22398">
+                <div class="item-img">
+                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQjEQSvX2c61F59W0yScwzyQ1-QF4AQwWyucxETSQ5Xx5UvSeUkX1mnI5tYYAAXOh-9Q7FDU37hJ5WHo6xrNLJZ3TZUjQcEvFw-YKWAGrtXucCmbNTwgnX9NiY9B6uJbOMrCpw&usqp=CAc" alt="">
+                 </div>
+                <div class="item__content">
+                    <div class="item-title">
+                        Tréninkový návlek krátký rukáv Joma L černá
+                    </div>
+                    <div class="item-price">
+                        <span>181</span>
+                        <span>Kč</span>
+                    </div>
+                    <div class="item__action">
+                        <div class="item-btn">
+                            <button class="btn btn-primary" id="addNewProduct">Додати в корзину</button>
+                        </div>
+                        <div class="item-save">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEBklEQVR4nO2Zb0hrdRjHv5W6pYVdnQgqKLZI7QpqiSJCDeuNEEFmGagokoIIJRfSkCQWgUTQO91AUTAKfBP5wlduNqeONpe9Cby7475QZA7tpnV0bF7PE884uxy8/jnOqefEPnBgnP3Oc/bZ7//zA5IkSZLk/8gzAN4A8DWABQDrAAQAYQDbABwAvgXwllT2Ip4FYALwHQAngKAUS5Bi8zvMAF5XGE+RwEcAfKWlpTQ4OEg2m43W19dJEAQKh8MUCATIbreT2WymiooKAvAAQBeAlFPi8b1PAPgrKyujz/CzHINjCYIQjT0/P08DAwNUUlLC8e4D+PAqQkYA7pqaGlpYWCClLC8vk8lk4h/gBfCaLN5dAGsNDQ20srKiOJ7dbqfq6mqO9xuAly8r8XZaWtpfFouFRFGkeJiYmKD09PR/AbwL4L2MjAxhcnIyrliiKNLo6CjxbwLQoFTiHYPBcOR0OumquN1uMhgMkZycnKPV1dUrx3M4HJSdnR1RIvOqTqd7lAiJGB6PJ3olCofDEauZV84bSbzj4+OkdqxWK/cZz1kDQGttbW3cfeKmqaurY5mPT6uNh0tLS6QVFhcXWcR/slZqysvLSWuUlZWxTLVcZGR4eJi0xtDQEIt8IxdxXGbSUws2m41FfpWL+P1+P2kNn8/HIj65yMHBwQFpDUEQSFpoPiEUCoVIaxweHrLIoVwkGAwGSWsEAgGSthFP+MPr9ZLW8Hg8LPK7XOTH6elp0hpTU1Ms8oNc5F5vby9pjZ6eHhb5TC5yt7i4mLRGYWEhi5ScXG/dd7lcpBWcTidL/HlSItq82tvbSSu0traySP9pIndSU1P/1sIM7/P5KCUl5RGAl3AGX7a0tJDaaWpq4tr4AueQzuuu2dlZUitzc3OxFJEeF2DKzc19vLm5SWpja2uL8vLyHgN4Ewr5vKqqKrqWUQuhUCiW37qHS8Dbx5/a2tpILXR2dj41iyuF+4ubZ/zbTEiIokj9/f2xTOPziBMe3lzd3d10fHx8KxJ9fX0ssQIgE1ckA4Cto6ODIpHIjUmEw2HiCRrAIoAXkSC4mf1SX19P29vb1y6xs7MTS4T/LL07oXDuy1xQUCByTve6WFtbo6KiIhHAV4k6GzmLJr1e/8/IyEhC+w33B6vVGsvgv48boohTSHzWsbGxkZAta2NjIzcl13nJ6euCm9qnmZmZYf4n42VmZoaysrKOpKb0HG6RKt4XNDc30+7urmKBvb094glX2lNUQiXoAXyfn58v8qLuIrgMl+VnlCz+bgM+qX3Y1dVF+/v7TwnwPf6Oy0gnwKrmBQAW3k/Lt86cbjIajSxhkcpohg90Ot3e2NgY8cWfeeiGRjHykbR0XfpoOQk0zH9T/QhtUPNkqQAAAABJRU5ErkJggg==">
+                        </div>
+                        <div class="item-save__wishlist d-none">
+                            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/filled-like.png" alt="filled-like"/>
+                        </div>
+                    </div> 
+                </div>
+                
+            </div>
+            <div class="cart__item" data-cartItem="39326">
+                <div class="item-img">
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQudWAznCagxrmafD2C8KqP3AbEiw_kzEzxp4OY6ushtERjFeXAGrJOK1vw3szXu0W78IbA0uA6L_sLUG8X9ZF0DKK0p-pcELYY6lZwP8f-GJo7lGSED-HkTFrPQx_yokN_4Co&usqp=CAc" alt="">
+                </div>
+                <div class="item__content">
+                    <div class="item-title">
+                    Pánské tréninkové tričko Nike Dri-Fit Park navy blue BV6883-410
+                </div>
+                <div class="item-price">
+                    <span>421</span>
+                    <span>Kč</span>
+                </div>
+                <div class="item__action">
+                    <div class="item-btn">
+                        <button class="btn btn-primary" id="addNewProduct">Додати в корзину</button>
+                    </div>
+                    <div class="item-save">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEBklEQVR4nO2Zb0hrdRjHv5W6pYVdnQgqKLZI7QpqiSJCDeuNEEFmGagokoIIJRfSkCQWgUTQO91AUTAKfBP5wlduNqeONpe9Cby7475QZA7tpnV0bF7PE884uxy8/jnOqefEPnBgnP3Oc/bZ7//zA5IkSZLk/8gzAN4A8DWABQDrAAQAYQDbABwAvgXwllT2Ip4FYALwHQAngKAUS5Bi8zvMAF5XGE+RwEcAfKWlpTQ4OEg2m43W19dJEAQKh8MUCATIbreT2WymiooKAvAAQBeAlFPi8b1PAPgrKyujz/CzHINjCYIQjT0/P08DAwNUUlLC8e4D+PAqQkYA7pqaGlpYWCClLC8vk8lk4h/gBfCaLN5dAGsNDQ20srKiOJ7dbqfq6mqO9xuAly8r8XZaWtpfFouFRFGkeJiYmKD09PR/AbwL4L2MjAxhcnIyrliiKNLo6CjxbwLQoFTiHYPBcOR0OumquN1uMhgMkZycnKPV1dUrx3M4HJSdnR1RIvOqTqd7lAiJGB6PJ3olCofDEauZV84bSbzj4+OkdqxWK/cZz1kDQGttbW3cfeKmqaurY5mPT6uNh0tLS6QVFhcXWcR/slZqysvLSWuUlZWxTLVcZGR4eJi0xtDQEIt8IxdxXGbSUws2m41FfpWL+P1+P2kNn8/HIj65yMHBwQFpDUEQSFpoPiEUCoVIaxweHrLIoVwkGAwGSWsEAgGSthFP+MPr9ZLW8Hg8LPK7XOTH6elp0hpTU1Ms8oNc5F5vby9pjZ6eHhb5TC5yt7i4mLRGYWEhi5ScXG/dd7lcpBWcTidL/HlSItq82tvbSSu0traySP9pIndSU1P/1sIM7/P5KCUl5RGAl3AGX7a0tJDaaWpq4tr4AueQzuuu2dlZUitzc3OxFJEeF2DKzc19vLm5SWpja2uL8vLyHgN4Ewr5vKqqKrqWUQuhUCiW37qHS8Dbx5/a2tpILXR2dj41iyuF+4ubZ/zbTEiIokj9/f2xTOPziBMe3lzd3d10fHx8KxJ9fX0ssQIgE1ckA4Cto6ODIpHIjUmEw2HiCRrAIoAXkSC4mf1SX19P29vb1y6xs7MTS4T/LL07oXDuy1xQUCByTve6WFtbo6KiIhHAV4k6GzmLJr1e/8/IyEhC+w33B6vVGsvgv48boohTSHzWsbGxkZAta2NjIzcl13nJ6euCm9qnmZmZYf4n42VmZoaysrKOpKb0HG6RKt4XNDc30+7urmKBvb094glX2lNUQiXoAXyfn58v8qLuIrgMl+VnlCz+bgM+qX3Y1dVF+/v7TwnwPf6Oy0gnwKrmBQAW3k/Lt86cbjIajSxhkcpohg90Ot3e2NgY8cWfeeiGRjHykbR0XfpoOQk0zH9T/QhtUPNkqQAAAABJRU5ErkJggg==">
+                    </div>
+                    <div class="item-save__wishlist d-none">
+                        <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/filled-like.png" alt="filled-like"/>
+                    </div>
+                </div>
+                </div>
+                
+            </div>
+            <div class="cart__item" data-cartItem="49204">
+                <div class="item-img">
+                    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR6JypvZRXM_knZhTAHjWq-EyyqiMnjMacdwaApWJDKgtrPCBSxL5iqyc760xkU0JmCXsfxDn_sqnMBhwTeVLTVZ-vIkyrkbais0YEfFYS9DsWf445Bo9zEPOa8ZsEULijEyvo&usqp=CAc" alt="">
+                </div>
+                <div class="item__content">
+                    <div class="item-title">
+                        Tričko Under Armour UA Tech 2.0 SS - černá
+                    </div>
+                    <div class="item-price">
+                        <span>439</span>
+                        <span>Kč</span>
+                    </div>
+                    <div class="item__action">
+                        <div class="item-btn">
+                            <button class="btn btn-primary" id="addNewProduct">Додати в корзину</button>
+                        </div>
+                        <div class="item-save">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEBklEQVR4nO2Zb0hrdRjHv5W6pYVdnQgqKLZI7QpqiSJCDeuNEEFmGagokoIIJRfSkCQWgUTQO91AUTAKfBP5wlduNqeONpe9Cby7475QZA7tpnV0bF7PE884uxy8/jnOqefEPnBgnP3Oc/bZ7//zA5IkSZLk/8gzAN4A8DWABQDrAAQAYQDbABwAvgXwllT2Ip4FYALwHQAngKAUS5Bi8zvMAF5XGE+RwEcAfKWlpTQ4OEg2m43W19dJEAQKh8MUCATIbreT2WymiooKAvAAQBeAlFPi8b1PAPgrKyujz/CzHINjCYIQjT0/P08DAwNUUlLC8e4D+PAqQkYA7pqaGlpYWCClLC8vk8lk4h/gBfCaLN5dAGsNDQ20srKiOJ7dbqfq6mqO9xuAly8r8XZaWtpfFouFRFGkeJiYmKD09PR/AbwL4L2MjAxhcnIyrliiKNLo6CjxbwLQoFTiHYPBcOR0OumquN1uMhgMkZycnKPV1dUrx3M4HJSdnR1RIvOqTqd7lAiJGB6PJ3olCofDEauZV84bSbzj4+OkdqxWK/cZz1kDQGttbW3cfeKmqaurY5mPT6uNh0tLS6QVFhcXWcR/slZqysvLSWuUlZWxTLVcZGR4eJi0xtDQEIt8IxdxXGbSUws2m41FfpWL+P1+P2kNn8/HIj65yMHBwQFpDUEQSFpoPiEUCoVIaxweHrLIoVwkGAwGSWsEAgGSthFP+MPr9ZLW8Hg8LPK7XOTH6elp0hpTU1Ms8oNc5F5vby9pjZ6eHhb5TC5yt7i4mLRGYWEhi5ScXG/dd7lcpBWcTidL/HlSItq82tvbSSu0traySP9pIndSU1P/1sIM7/P5KCUl5RGAl3AGX7a0tJDaaWpq4tr4AueQzuuu2dlZUitzc3OxFJEeF2DKzc19vLm5SWpja2uL8vLyHgN4Ewr5vKqqKrqWUQuhUCiW37qHS8Dbx5/a2tpILXR2dj41iyuF+4ubZ/zbTEiIokj9/f2xTOPziBMe3lzd3d10fHx8KxJ9fX0ssQIgE1ckA4Cto6ODIpHIjUmEw2HiCRrAIoAXkSC4mf1SX19P29vb1y6xs7MTS4T/LL07oXDuy1xQUCByTve6WFtbo6KiIhHAV4k6GzmLJr1e/8/IyEhC+w33B6vVGsvgv48boohTSHzWsbGxkZAta2NjIzcl13nJ6euCm9qnmZmZYf4n42VmZoaysrKOpKb0HG6RKt4XNDc30+7urmKBvb094glX2lNUQiXoAXyfn58v8qLuIrgMl+VnlCz+bgM+qX3Y1dVF+/v7TwnwPf6Oy0gnwKrmBQAW3k/Lt86cbjIajSxhkcpohg90Ot3e2NgY8cWfeeiGRjHykbR0XfpoOQk0zH9T/QhtUPNkqQAAAABJRU5ErkJggg==">
+                        </div>
+                        <div class="item-save__wishlist d-none">
+                            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/filled-like.png" alt="filled-like"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="authForm d-none">
+        <div class="container">
+            <form action="#" class="from-block">
+                <div>
+                    <label class="form-label">
+                        <span>Login</span>
+                        <input type="text" name="login" class="form-control">
+                    </label>
+                </div>
+                <div>
+                    <label class="form-label">
+                        <span>Password</span>
+                        <input type="password" name="password" class="form-control">
+                    </label>
+                </div>
+                <button type="button" id="authButton" class="btn btn-warning mt-3">Відправити форму</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
